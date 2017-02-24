@@ -3,6 +3,7 @@ machine:
         ANDROID_HOME: /usr/local/android-sdk-linux
         ADB_INSTALL_TIMEOUT: 60
         GRADLE_OPTS: '-Dorg.gradle.jvmargs="-Xmx3072M -XX:+HeapDumpOnOutOfMemoryError"'
+        QEMU_AUDIO_DRV: none
     java:
         version: oraclejdk8
 
@@ -14,6 +15,12 @@ dependencies:
     - echo y | android update sdk --no-ui --all --filter "extra-android-support"
 
 test:
+    pre:
+        - emulator -avd circleci-android24 -no-window:
+            background: true
+            parallel: true
+        - circle-android wait-for-boot
+        
     override:
         # This will run the tests:
         - ./gradlew assemble connectedDebugAndroidTest -PdisablePreDex --console=plain --info
