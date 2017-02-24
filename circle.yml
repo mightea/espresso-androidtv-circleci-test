@@ -14,10 +14,11 @@ dependencies:
     - echo y | android update sdk --no-ui --all --filter "android-24, build-tools-24.0.3, build-tools-25.0.2"
     - echo y | android update sdk --no-ui --all --filter "extra-android-support"
     - echo y | android update sdk --no-ui --all --filter "extra-android-m2repository"
-    - android create avd -t android-24 -b android-tv/x86 -d tv_1080p -n tv-img
+    - android create avd -t android-24 -b android-tv/x86 -d tv_1080p -s 1920x1080 -n tv-img
 
 test:
     pre:
+        - android list avd
         - emulator -avd tv-img -no-window:
             background: true
             parallel: true
