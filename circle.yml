@@ -9,8 +9,6 @@ machine:
 
 dependencies:
   pre:
-    - wget https://github.com/anggrayudi/android-hidden-api/blob/master/android-24/android.jar && 
-
     - echo y | android update sdk --no-ui --all --filter "platform-tools, tools"
     - echo y | android update sdk --no-ui --all --filter "sys-img-x86-android-tv-24"
     - echo y | android update sdk --no-ui --all --filter "android-24, build-tools-24.0.3, build-tools-25.0.2"
