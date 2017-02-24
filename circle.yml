@@ -19,7 +19,7 @@ dependencies:
 test:
     pre:
         - android list avd
-        - emulator -avd tv-img -no-window:
+        - emulator -avd tv-img -no-audio -no-window:
             background: true
             parallel: true
         - circle-android wait-for-boot
